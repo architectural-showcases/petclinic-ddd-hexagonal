@@ -1,2 +1,5 @@
 /mvnw text eol=lf
 *.cmd text eol=crlf
+
+src/main/resources/static/css/petclinic.css linguist-vendored=true
+src/main/resources/static/css/*.css linguist-vendored=true
