@@ -37,7 +37,6 @@ public class Owner {
     public Address    getAddress()   { return address; }
     public PhoneNumber getPhone()    { return telephone; }
 
-    // удобные геттеры для маппинга
     public String getFirstName()  { return name.firstName(); }
     public String getLastName()   { return name.lastName(); }
     public String getStreet()     { return address.street(); }
