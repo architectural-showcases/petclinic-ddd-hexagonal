@@ -1,7 +1,7 @@
 package io.github.dmitriirussu.petclinic.vet.adapter.out.jooq;
 
-import io.github.dmitriirussu.petclinic.vet.domain.valueobject.Specialty;
-import io.github.dmitriirussu.petclinic.vet.port.out.SpecialtyCatalog;
+import io.github.dmitriirussu.petclinic.vet.core.domain.valueobject.Specialty;
+import io.github.dmitriirussu.petclinic.vet.core.port.out.SpecialtyCatalog;
 import org.jooq.DSLContext;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;

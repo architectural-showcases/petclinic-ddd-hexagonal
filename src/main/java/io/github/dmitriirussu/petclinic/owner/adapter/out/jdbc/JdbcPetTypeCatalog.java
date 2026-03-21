@@ -1,7 +1,7 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.out.jdbc;
 
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.pet.PetType;
-import io.github.dmitriirussu.petclinic.owner.port.out.PetTypeCatalog;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.pet.PetType;
+import io.github.dmitriirussu.petclinic.owner.core.port.out.PetTypeCatalog;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;

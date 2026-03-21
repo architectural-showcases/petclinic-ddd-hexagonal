@@ -1,7 +1,7 @@
-@param io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner owner
+@param io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner owner
 @param io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.formdto.PetFormDto petForm
 @param String petId
-@param java.util.List<io.github.dmitriirussu.petclinic.owner.domain.valueobject.pet.PetType> petTypes
+@param java.util.List<io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.pet.PetType> petTypes
 @param String error
 
 @template.layout.main(title = "${petId != null ? \"Edit Pet\" : \"New Pet\"}", content = @`

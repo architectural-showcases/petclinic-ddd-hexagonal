@@ -1,9 +1,8 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.in.web.rest.query;
 
 import io.github.dmitriirussu.petclinic.owner.adapter.in.web.rest.response.OwnerResponse;
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.port.in.OwnerQueryPort;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.port.in.OwnerQueryPort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +26,7 @@ public class RestOwnerQueryController {
             @RequestParam(defaultValue = "1") int page
     ) {
         return query.findPaginated(lastName, page, PAGE_SIZE)
+                .content()
                 .stream()
                 .map(OwnerResponse::from)
                 .toList();

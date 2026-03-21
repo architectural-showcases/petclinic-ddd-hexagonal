@@ -1,10 +1,10 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.out;
 
 import io.github.dmitriirussu.petclinic.kernel.idgenerator.IdGenerator;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.PetId;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.VisitId;
-import io.github.dmitriirussu.petclinic.owner.port.out.OwnerIdGeneratorPort;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.PetId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.VisitId;
+import io.github.dmitriirussu.petclinic.owner.core.port.out.OwnerIdGeneratorPort;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;

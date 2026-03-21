@@ -1,5 +1,5 @@
-@param io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner owner
-@param io.github.dmitriirussu.petclinic.owner.domain.entity.Pet pet
+@param io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner owner
+@param io.github.dmitriirussu.petclinic.owner.core.domain.entity.Pet pet
 @param io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.formdto.VisitFormDto visitForm
 @param String error
 

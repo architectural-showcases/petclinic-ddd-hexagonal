@@ -1,4 +1,4 @@
-@param io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner owner
+@param io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner owner
 
 @template.layout.main(title = "Delete Owner", content = @`
 

@@ -1,9 +1,8 @@
 package io.github.dmitriirussu.petclinic.vet.adapter.in.web.rest;
 
 import io.github.dmitriirussu.petclinic.vet.adapter.in.web.rest.response.VetResponse;
-import io.github.dmitriirussu.petclinic.vet.domain.Vet;
-import io.github.dmitriirussu.petclinic.vet.domain.valueobject.VetId;
-import io.github.dmitriirussu.petclinic.vet.port.in.VetQueryPort;
+import io.github.dmitriirussu.petclinic.vet.core.domain.valueobject.VetId;
+import io.github.dmitriirussu.petclinic.vet.core.port.in.VetQueryPort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +25,7 @@ public class VetQueryController {
             @RequestParam(defaultValue = "1") int page
     ) {
         return query.findAll(page, PAGE_SIZE)
+                .content()
                 .stream()
                 .map(VetResponse::from)
                 .toList();

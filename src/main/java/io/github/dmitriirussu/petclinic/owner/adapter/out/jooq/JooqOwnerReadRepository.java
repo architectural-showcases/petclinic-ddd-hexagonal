@@ -1,16 +1,18 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.out.jooq;
 
+import io.github.dmitriirussu.petclinic.kernel.pagination.Page;
 import io.github.dmitriirussu.petclinic.owner.adapter.out.mapper.OwnerRowMapper;
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner;
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.OwnerFactory;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.port.out.OwnerReadRepository;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.OwnerFactory;
+import io.github.dmitriirussu.petclinic.owner.core.domain.entity.PetFactory;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.visit.VisitFactory;
+import io.github.dmitriirussu.petclinic.owner.core.port.out.OwnerReadRepository;
 import org.jooq.DSLContext;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -91,45 +93,52 @@ public class JooqOwnerReadRepository implements OwnerReadRepository {
     private final DSLContext     dsl;
     private final OwnerRowMapper mapper;
 
-    public JooqOwnerReadRepository(DSLContext dsl, OwnerFactory factory) {
+    public JooqOwnerReadRepository(
+            DSLContext dsl,
+            OwnerFactory ownerFactory,
+            PetFactory petFactory,
+            VisitFactory visitFactory
+    ) {
         this.dsl    = Objects.requireNonNull(dsl);
-        this.mapper = new OwnerRowMapper(factory);
+        this.mapper = new OwnerRowMapper(ownerFactory, petFactory, visitFactory);
     }
 
     @Override
     public Optional<Owner> findById(OwnerId id) {
         return mapper.map(
-                dsl.fetch(FIND_BY_ID_QUERY, id.value()).intoMaps()
-        ).stream().findFirst();
+                dsl.fetch(
+                        FIND_BY_ID_QUERY, id.value()).intoMaps()
+        )
+                .stream().findFirst();
     }
 
     @Override
-    public List<Owner> findAll(int page, int pageSize) {
-        return mapper.map(
+    public Page<Owner> findAll(int page, int pageSize) {
+        int total = dsl.fetchOne("SELECT COUNT(*) FROM owners")
+                .get(0, Integer.class);
+
+        List<Owner> content = mapper.map(
                 dsl.fetch(PAGINATED_ALL_QUERY, pageSize, (page - 1) * pageSize).intoMaps()
         );
+
+        return new Page<>(content, total);
     }
 
     @Override
-    public List<Owner> findByLastName(String lastName, int page, int pageSize) {
-        return mapper.map(
+    public Page<Owner> findByLastName(String lastName, int page, int pageSize) {
+        int total = dsl.fetchOne(
+                "SELECT COUNT(*) FROM owners WHERE LOWER(last_name) LIKE ?",
+                lastName.toLowerCase() + "%"
+        ).get(0, Integer.class);
+
+        List<Owner> content = mapper.map(
                 dsl.fetch(PAGINATED_BY_NAME_QUERY,
                                 lastName.toLowerCase() + "%",
                                 pageSize,
                                 (page - 1) * pageSize)
                         .intoMaps()
         );
-    }
-    @Override
-    public int countAll() {
-        return dsl.fetchOne("SELECT COUNT(*) FROM owners").get(0, Integer.class);
-    }
 
-    @Override
-    public int countByLastName(String lastName) {
-        return dsl.fetchOne(
-                "SELECT COUNT(*) FROM owners WHERE LOWER(last_name) LIKE ?",
-                lastName.toLowerCase() + "%"
-        ).get(0, Integer.class);
+        return new Page<>(content, total);
     }
 }

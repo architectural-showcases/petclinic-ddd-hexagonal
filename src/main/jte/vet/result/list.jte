@@ -1,4 +1,4 @@
-@param java.util.List<io.github.dmitriirussu.petclinic.vet.domain.Vet> vets
+@param java.util.List<io.github.dmitriirussu.petclinic.vet.core.domain.Vet> vets
 @param int currentPage
 @param int totalPages
 

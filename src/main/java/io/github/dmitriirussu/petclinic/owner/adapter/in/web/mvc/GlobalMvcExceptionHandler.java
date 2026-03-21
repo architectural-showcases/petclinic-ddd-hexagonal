@@ -4,11 +4,11 @@ import io.github.dmitriirussu.petclinic.kernel.exception.DomainValidationExcepti
 import io.github.dmitriirussu.petclinic.kernel.exception.EntityNotFoundException;
 import io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.formdto.PetFormDto;
 import io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.formdto.VisitFormDto;
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner;
-import io.github.dmitriirussu.petclinic.owner.domain.entity.Pet;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.port.in.OwnerQueryPort;
-import io.github.dmitriirussu.petclinic.owner.port.out.PetTypeCatalog;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner;
+import io.github.dmitriirussu.petclinic.owner.core.domain.entity.Pet;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.port.in.OwnerQueryPort;
+import io.github.dmitriirussu.petclinic.owner.core.port.out.PetTypeCatalog;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

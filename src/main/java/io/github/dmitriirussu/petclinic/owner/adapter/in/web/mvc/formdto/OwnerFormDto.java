@@ -1,6 +1,6 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.formdto;
 
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;

@@ -1,11 +1,11 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.command;
 
 import io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.formdto.OwnerFormDto;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.personal.Address;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.personal.OwnerName;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.personal.PhoneNumber;
-import io.github.dmitriirussu.petclinic.owner.port.in.OwnerCommandPort;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.personal.Address;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.personal.OwnerName;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.personal.PhoneNumber;
+import io.github.dmitriirussu.petclinic.owner.core.port.in.OwnerCommandPort;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

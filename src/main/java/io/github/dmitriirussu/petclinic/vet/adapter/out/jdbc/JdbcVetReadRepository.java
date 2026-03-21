@@ -1,10 +1,11 @@
 package io.github.dmitriirussu.petclinic.vet.adapter.out.jdbc;
 
+import io.github.dmitriirussu.petclinic.kernel.pagination.Page;
 import io.github.dmitriirussu.petclinic.vet.adapter.out.mapper.VetRowMapper;
-import io.github.dmitriirussu.petclinic.vet.domain.Vet;
-import io.github.dmitriirussu.petclinic.vet.domain.VetFactory;
-import io.github.dmitriirussu.petclinic.vet.domain.valueobject.VetId;
-import io.github.dmitriirussu.petclinic.vet.port.out.VetReadRepository;
+import io.github.dmitriirussu.petclinic.vet.core.domain.Vet;
+import io.github.dmitriirussu.petclinic.vet.core.domain.VetFactory;
+import io.github.dmitriirussu.petclinic.vet.core.domain.valueobject.VetId;
+import io.github.dmitriirussu.petclinic.vet.core.port.out.VetReadRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
@@ -60,19 +61,18 @@ public class JdbcVetReadRepository implements VetReadRepository {
     }
 
     @Override
-    public List<Vet> findAll(int page, int pageSize) {
-        return mapper.map(
+    public Page<Vet> findAll(int page, int pageSize) {
+        int total = jdbc.sql("SELECT COUNT(*) FROM vets")
+                .query(Integer.class)
+                .single();
+
+        List<Vet> content = mapper.map(
                 jdbc.sql(BASE_QUERY)
                         .param("limit",  pageSize)
                         .param("offset", (page - 1) * pageSize)
                         .query().listOfRows()
         );
-    }
 
-    @Override
-    public int countAll() {
-        return jdbc.sql("SELECT COUNT(*) FROM vets")
-                .query(Integer.class)
-                .single();
+        return new Page<>(content, total);
     }
 }

@@ -1,9 +1,9 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.query;
 
 import io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.formdto.OwnerFormDto;
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.port.in.OwnerQueryPort;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.port.in.OwnerQueryPort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

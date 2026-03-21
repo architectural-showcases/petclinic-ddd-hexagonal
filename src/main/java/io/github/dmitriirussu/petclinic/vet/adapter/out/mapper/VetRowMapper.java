@@ -1,10 +1,10 @@
 package io.github.dmitriirussu.petclinic.vet.adapter.out.mapper;
 
-import io.github.dmitriirussu.petclinic.vet.domain.Vet;
-import io.github.dmitriirussu.petclinic.vet.domain.VetFactory;
-import io.github.dmitriirussu.petclinic.vet.domain.valueobject.Specialty;
-import io.github.dmitriirussu.petclinic.vet.domain.valueobject.VetId;
-import io.github.dmitriirussu.petclinic.vet.domain.valueobject.VetName;
+import io.github.dmitriirussu.petclinic.vet.core.domain.Vet;
+import io.github.dmitriirussu.petclinic.vet.core.domain.VetFactory;
+import io.github.dmitriirussu.petclinic.vet.core.domain.valueobject.Specialty;
+import io.github.dmitriirussu.petclinic.vet.core.domain.valueobject.VetId;
+import io.github.dmitriirussu.petclinic.vet.core.domain.valueobject.VetName;
 
 import java.util.*;
 

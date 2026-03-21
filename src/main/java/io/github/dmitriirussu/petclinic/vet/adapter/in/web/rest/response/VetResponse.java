@@ -1,6 +1,6 @@
 package io.github.dmitriirussu.petclinic.vet.adapter.in.web.rest.response;
 
-import io.github.dmitriirussu.petclinic.vet.domain.Vet;
+import io.github.dmitriirussu.petclinic.vet.core.domain.Vet;
 
 import java.util.List;
 

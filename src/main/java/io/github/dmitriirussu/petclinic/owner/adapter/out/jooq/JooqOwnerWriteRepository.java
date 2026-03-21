@@ -1,10 +1,10 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.out.jooq;
 
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner;
-import io.github.dmitriirussu.petclinic.owner.domain.entity.Pet;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.domain.visit.Visit;
-import io.github.dmitriirussu.petclinic.owner.port.out.OwnerWriteRepository;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner;
+import io.github.dmitriirussu.petclinic.owner.core.domain.entity.Pet;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.visit.Visit;
+import io.github.dmitriirussu.petclinic.owner.core.port.out.OwnerWriteRepository;
 import static org.jooq.impl.DSL.*;
 import org.jooq.DSLContext;
 import org.springframework.context.annotation.Profile;

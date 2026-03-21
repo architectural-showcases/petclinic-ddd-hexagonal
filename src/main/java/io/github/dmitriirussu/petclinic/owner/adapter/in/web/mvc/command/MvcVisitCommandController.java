@@ -1,12 +1,12 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.command;
 
 import io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.formdto.VisitFormDto;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.PetId;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.VisitId;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.visit.VisitDate;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.visit.VisitDescription;
-import io.github.dmitriirussu.petclinic.owner.port.in.OwnerCommandPort;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.PetId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.VisitId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.visit.VisitDate;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.visit.VisitDescription;
+import io.github.dmitriirussu.petclinic.owner.core.port.in.OwnerCommandPort;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

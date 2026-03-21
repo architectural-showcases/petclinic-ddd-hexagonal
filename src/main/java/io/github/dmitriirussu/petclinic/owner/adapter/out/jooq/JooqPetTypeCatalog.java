@@ -1,7 +1,7 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.out.jooq;
 
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.pet.PetType;
-import io.github.dmitriirussu.petclinic.owner.port.out.PetTypeCatalog;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.pet.PetType;
+import io.github.dmitriirussu.petclinic.owner.core.port.out.PetTypeCatalog;
 import org.jooq.DSLContext;
 import static org.jooq.impl.DSL.*;
 import org.springframework.context.annotation.Profile;

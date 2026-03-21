@@ -1,10 +1,13 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.out.jdbc;
 
+import io.github.dmitriirussu.petclinic.kernel.pagination.Page;
 import io.github.dmitriirussu.petclinic.owner.adapter.out.mapper.OwnerRowMapper;
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner;
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.OwnerFactory;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.port.out.OwnerReadRepository;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.OwnerFactory;
+import io.github.dmitriirussu.petclinic.owner.core.domain.entity.PetFactory;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.visit.VisitFactory;
+import io.github.dmitriirussu.petclinic.owner.core.port.out.OwnerReadRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
@@ -90,9 +93,14 @@ public class JdbcOwnerReadRepository implements OwnerReadRepository {
     private final JdbcClient     jdbc;
     private final OwnerRowMapper mapper;
 
-    public JdbcOwnerReadRepository(JdbcClient jdbc, OwnerFactory factory) {
+    public JdbcOwnerReadRepository(
+            JdbcClient jdbc,
+            OwnerFactory ownerFactory,
+            PetFactory petFactory,
+            VisitFactory visitFactory
+    ) {
         this.jdbc   = Objects.requireNonNull(jdbc);
-        this.mapper = new OwnerRowMapper(factory);
+        this.mapper = new OwnerRowMapper(ownerFactory, petFactory, visitFactory);
     }
 
     @Override
@@ -105,38 +113,32 @@ public class JdbcOwnerReadRepository implements OwnerReadRepository {
     }
 
     @Override
-    public List<Owner> findAll(int page, int pageSize) {
-        return mapper.map(
+    public Page<Owner> findAll(int page, int pageSize) {
+        int total = jdbc.sql("SELECT COUNT(*) FROM owners")
+                .query(Integer.class)
+                .single();
+        List<Owner> content = mapper.map(
                 jdbc.sql(PAGINATED_ALL_QUERY)
                         .param("limit",  pageSize)
                         .param("offset", (page - 1) * pageSize)
                         .query().listOfRows()
         );
+        return new Page<>(content, total);
     }
 
     @Override
-    public List<Owner> findByLastName(String lastName, int page, int pageSize) {
-        return mapper.map(
+    public Page<Owner> findByLastName(String lastName, int page, int pageSize) {
+        int total = jdbc.sql("SELECT COUNT(*) FROM owners WHERE LOWER(last_name) LIKE :prefix")
+                .param("prefix", lastName.toLowerCase() + "%")
+                .query(Integer.class)
+                .single();
+        List<Owner> content = mapper.map(
                 jdbc.sql(PAGINATED_BY_NAME_QUERY)
                         .param("prefix", lastName.toLowerCase() + "%")
                         .param("limit",  pageSize)
                         .param("offset", (page - 1) * pageSize)
                         .query().listOfRows()
         );
-    }
-
-    @Override
-    public int countAll() {
-        return jdbc.sql("SELECT COUNT(*) FROM owners")
-                .query(Integer.class)
-                .single();
-    }
-
-    @Override
-    public int countByLastName(String lastName) {
-        return jdbc.sql("SELECT COUNT(*) FROM owners WHERE LOWER(last_name) LIKE LOWER(:prefix)")
-                .param("prefix", lastName + "%")
-                .query(Integer.class)
-                .single();
+        return new Page<>(content, total);
     }
 }

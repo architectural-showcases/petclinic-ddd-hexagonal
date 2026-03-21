@@ -1,10 +1,11 @@
 package io.github.dmitriirussu.petclinic.vet.adapter.out.jooq;
 
+import io.github.dmitriirussu.petclinic.kernel.pagination.Page;
 import io.github.dmitriirussu.petclinic.vet.adapter.out.mapper.VetRowMapper;
-import io.github.dmitriirussu.petclinic.vet.domain.Vet;
-import io.github.dmitriirussu.petclinic.vet.domain.VetFactory;
-import io.github.dmitriirussu.petclinic.vet.domain.valueobject.VetId;
-import io.github.dmitriirussu.petclinic.vet.port.out.VetReadRepository;
+import io.github.dmitriirussu.petclinic.vet.core.domain.Vet;
+import io.github.dmitriirussu.petclinic.vet.core.domain.VetFactory;
+import io.github.dmitriirussu.petclinic.vet.core.domain.valueobject.VetId;
+import io.github.dmitriirussu.petclinic.vet.core.port.out.VetReadRepository;
 import org.jooq.DSLContext;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
@@ -58,14 +59,12 @@ public class JooqVetReadRepository implements VetReadRepository {
     }
 
     @Override
-    public List<Vet> findAll(int page, int pageSize) {
-        return mapper.map(
+    public Page<Vet> findAll(int page, int pageSize) {
+        int total = dsl.fetchOne("SELECT COUNT(*) FROM vets")
+                .get(0, Integer.class);
+        List<Vet> content = mapper.map(
                 dsl.fetch(PAGINATED_QUERY, pageSize, (page - 1) * pageSize).intoMaps()
         );
-    }
-
-    @Override
-    public int countAll() {
-        return dsl.fetchOne("SELECT COUNT(*) FROM vets").get(0, Integer.class);
+        return new Page<>(content, total);
     }
 }

@@ -1,6 +1,6 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.in.web.rest.response;
 
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner;
 
 import java.util.List;
 

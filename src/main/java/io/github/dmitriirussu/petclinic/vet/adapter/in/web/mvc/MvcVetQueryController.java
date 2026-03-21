@@ -1,7 +1,8 @@
 package io.github.dmitriirussu.petclinic.vet.adapter.in.web.mvc;
 
-import io.github.dmitriirussu.petclinic.vet.domain.Vet;
-import io.github.dmitriirussu.petclinic.vet.port.in.VetQueryPort;
+import io.github.dmitriirussu.petclinic.kernel.pagination.Page;
+import io.github.dmitriirussu.petclinic.vet.core.domain.Vet;
+import io.github.dmitriirussu.petclinic.vet.core.port.in.VetQueryPort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +28,11 @@ public class MvcVetQueryController {
             @RequestParam(defaultValue = "1") int page,
             Model model
     ) {
-        int total      = query.countAll();
-        int totalPages = (int) Math.ceil((double) total / PAGE_SIZE);
-        List<Vet> vets = query.findAll(page, PAGE_SIZE);
+        Page<Vet> result = query.findAll(page, PAGE_SIZE);
 
-        model.addAttribute("vets", vets);
+        model.addAttribute("vets", result.content());
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalPages", result.totalPages(PAGE_SIZE));
         return "vet/result/list";
     }
 }

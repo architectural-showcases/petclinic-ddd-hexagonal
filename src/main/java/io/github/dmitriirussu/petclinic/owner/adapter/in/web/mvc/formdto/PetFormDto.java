@@ -1,6 +1,6 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.in.web.mvc.formdto;
 
-import io.github.dmitriirussu.petclinic.owner.domain.entity.Pet;
+import io.github.dmitriirussu.petclinic.owner.core.domain.entity.Pet;
 
 public class PetFormDto {
 

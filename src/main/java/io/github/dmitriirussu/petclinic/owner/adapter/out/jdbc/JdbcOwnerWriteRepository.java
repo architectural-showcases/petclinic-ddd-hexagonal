@@ -1,10 +1,10 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.out.jdbc;
 
-import io.github.dmitriirussu.petclinic.owner.domain.aggregate.Owner;
-import io.github.dmitriirussu.petclinic.owner.domain.entity.Pet;
-import io.github.dmitriirussu.petclinic.owner.domain.valueobject.identity.OwnerId;
-import io.github.dmitriirussu.petclinic.owner.domain.visit.Visit;
-import io.github.dmitriirussu.petclinic.owner.port.out.OwnerWriteRepository;
+import io.github.dmitriirussu.petclinic.owner.core.domain.aggregate.Owner;
+import io.github.dmitriirussu.petclinic.owner.core.domain.entity.Pet;
+import io.github.dmitriirussu.petclinic.owner.core.domain.valueobject.identity.OwnerId;
+import io.github.dmitriirussu.petclinic.owner.core.domain.visit.Visit;
+import io.github.dmitriirussu.petclinic.owner.core.port.out.OwnerWriteRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;

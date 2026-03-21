@@ -1,6 +1,6 @@
 package io.github.dmitriirussu.petclinic.owner.adapter.in.web.rest.response;
 
-import io.github.dmitriirussu.petclinic.owner.domain.visit.Visit;
+import io.github.dmitriirussu.petclinic.owner.core.domain.visit.Visit;
 
 import java.time.LocalDate;
 
